@@ -12,6 +12,7 @@ Add the Google Fonts you want, remove the ones you don't.
 
 @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Playfair+Display:ital@0;1&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 /*
 
@@ -48,7 +49,7 @@ No media query for `xs` since this is the default in Bootstrap
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
-  cursor: url("../assets/temp/up-cursor.png"), auto !important;
+  /* cursor: url("../assets/temp/up-cursor.png"), auto !important; */
 }
 
 *,
@@ -71,7 +72,7 @@ html {
 
 :root {
   --body-typeface: "Fredoka", sans-serif;
-  --heading-typeface: "Playfair+Display", serif;
+  --heading-typeface: "press start 2p", cursive;
   --project-title-typeface: "Fredoka", sans-serif;
   --background-color: #fff9f3;
   --background-color-about: #fff9f3;
@@ -82,7 +83,7 @@ html {
   --h2-color: #ed5e8e;
   --h3-color: #653392;
   --h4-color: #653392;
-  --h5-color: #616be8;
+  --h5-color: #fff9f3;
   --h6-color: #653392;
   --primary-text-color: #351f3f;
   --holding-page-title-color: #653392;
@@ -173,6 +174,7 @@ h4 {
 }
 
 h5 {
+  font-family: var(--heading-typeface);
   font-weight: 500;
   display: inline;
   font-size: 3.125rem;
@@ -275,11 +277,31 @@ a.social-media-logo:hover {
   color: var(--hyperlink-alternate-color);
 }
 
+.custom-navigation {
+  padding: 14px 28px;
+  background: #616be8;
+  border: 0;
+  text-transform: uppercase;
+  border-radius: 12px;
+  transition: transform 200ms cubic-bezier(.34,1.56,.64,1), filter 200ms cubic-bezier(.34,1.56,.64,1), background 200ms cubic-bezier(.34,1.56,.64,1), color 200ms cubic-bezier(.34,1.56,.64,1);
+}
+
 .custom-navigation:hover {
-  background: url(assets/temp/heading-background.svg);
-  background-size: 15%;
-  background-repeat: no-repeat;
-  background-position: center center;
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+  background: #ffa1c2;
+}
+
+.custom-navigation:active {
+  transform: translateY(1px) scale(0.98);
+  transition-duration: 100ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-navigation {
+    transition: none;
+    animation: none;
+  }
 }
 
 .heart {
@@ -345,9 +367,10 @@ a.social-media-logo:hover {
 
 .branding-navigation {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction:column;
   align-items: center;
+  gap: 1rem;
+  /* ALIGNS ITEMS HORIZONTALLY */
 }
 
 /* .header-navigation {
@@ -398,12 +421,8 @@ a.social-media-logo:hover {
   padding: 1rem 2rem 1rem 2rem;
 }
 
-.hero-header ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  overflow: hidden;
-}
+/* .hero-header ul {
+} */
 
 .arrow {
   width: 3rem;
@@ -456,7 +475,6 @@ a.social-media-logo:hover {
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  grid-gap: 1rem;
   align-items: center;
   /* Magical, media-query-less responsiveness is achieved using the repeat() function and the auto placement keywords. To achieve wrapping, we can use the auto-fit. If you're using auto-fit, the content will stretch to fill the entire row width.  Specify a minimum width for the columns, using the minmax() function. The 1fr is what tells the browser to distribute the space between the columns so that each column equally gets one fraction of that space.  */
 }
@@ -506,7 +524,6 @@ a.social-media-logo:hover {
 .about {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 1rem;
   flex: 1;
 }
 
@@ -540,7 +557,6 @@ a.social-media-logo:hover {
 .global-footer {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 1rem;
   min-height: 25vh;
   background: var(--background-color-footer);
   padding: 6rem 2rem 2rem;
@@ -549,7 +565,6 @@ a.social-media-logo:hover {
 .about-footer {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 1rem;
   min-height: 25vh;
   background: transparent;
   padding: 6rem 2rem 2rem;
@@ -942,14 +957,14 @@ a.sub-navigation-link:hover {
   h5 {
     font-family: var(--heading-typeface);
     font-weight: 900;
-    font-size: 1.563rem;
+    font-size: 0.9375rem;
     margin-bottom: 0.5rem;
     display: inline;
   }
 
-  h5:hover {
+  /* h5:hover {
     color: (var(--overlay-color));
-  }
+  } */
 
   h6 {
     font-family: var(--body-typeface);
@@ -973,7 +988,7 @@ a.sub-navigation-link:hover {
   }
 
   .hero-message {
-    padding: 3rem;
+    padding: 8rem 3rem 3rem;
   }
 
   .hero-headline-intro {
@@ -983,7 +998,6 @@ a.sub-navigation-link:hover {
 
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(768px, 1fr));
-    grid-gap: 1rem;
     align-items: center;
   }
 }
@@ -991,9 +1005,9 @@ a.sub-navigation-link:hover {
 /* Large devices (desktops, 992px and up) */
 
 @media (min-width: 992px) {
-  .hamburger {
+  /* .hamburger {
     display: none;
-  }
+  } */
 
   .menu-words {
     display: flex;
@@ -1019,7 +1033,7 @@ a.sub-navigation-link:hover {
   }
 
   .logo {
-    width: 12rem;
+    width: 50rem;
   }
 
   .hero {
@@ -1027,7 +1041,7 @@ a.sub-navigation-link:hover {
   }
 
   .hero-header {
-    padding: 2rem 3rem 2rem;
+    padding: 6rem 9rem 6rem;
   }
 
   .hero-headline-wrapper {
@@ -1062,7 +1076,6 @@ a.sub-navigation-link:hover {
     min-height: 10vh;
     padding: 4rem;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 6rem 1rem;
   }
 
   .about-item-1 {
@@ -1162,7 +1175,6 @@ a.sub-navigation-link:hover {
 
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(992px, 1fr));
-    grid-gap: 1rem;
     align-items: center;
   }
 }
@@ -1205,7 +1217,6 @@ a.sub-navigation-link:hover {
 
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(1200px, 1fr));
-    grid-gap: 1rem;
     align-items: center;
   }
 }
